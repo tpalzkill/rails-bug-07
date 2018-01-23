@@ -7,10 +7,10 @@ class TasksController < ApplicationController
 
   def create
     @task_list = TaskList.find(params[:task_list_id])
-    task_params = params.require(:task).permit(:description, :due_date)
+    task_params = params.require(:task).permit(:description, :due_date, :completed)
     @task = @task_list.tasks.new(task_params)
 
-    if params[:task][:completed]
+    if params[:completed]
       @task.completed = true
     end
 
